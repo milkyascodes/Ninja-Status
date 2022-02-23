@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'controllers/controllers.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,92 +19,110 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           colorSchemeSeed: Colors.purple, brightness: Brightness.dark),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
+
+  Mycontroller controller = Get.put(Mycontroller());
 
   @override
   Widget build(BuildContext context) {
+    print(controller.ninjaLevel);
     return Scaffold(
         appBar: AppBar(
           title: const Text('Ninja Status'),
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                height: 430,
-                width: 320,
-                child: Card(
-                  elevation: 6,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(),
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 60,
-                            backgroundImage:
-                                AssetImage('assets/ninja-titulek.png'),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            'Titulek',
-                            style: TextStyle(fontSize: 30),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 430,
+                  width: 320,
+                  child: Card(
+                    elevation: 6,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(),
+                        Column(
                           children: [
-                            Text(
-                              'Status',
-                              style: TextStyle(fontSize: 15),
+                            CircleAvatar(
+                              radius: 60,
+                              backgroundImage:
+                                  AssetImage('assets/ninja-titulek.png'),
+                            ),
+                            SizedBox(
+                              height: 30,
                             ),
                             Text(
-                              'Chunin',
-                              style:
-                                  TextStyle(color: Colors.orange, fontSize: 25),
+                              controller.ninjaName.toString(),
+                              style: TextStyle(fontSize: 30),
                             )
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        child: Column(
-                          children: [
-                            Text(
-                              'Level',
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            Text(
-                              '🔥 🔥',
-                              style:
-                                  TextStyle(color: Colors.orange, fontSize: 15),
-                            )
-                          ],
+                        SizedBox(
+                          child: Column(
+                            children: [
+                              Text(
+                                'Status',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              Obx(
+                                () => Text(
+                                  '${controller.ninjaStatus}',
+                                  style: TextStyle(
+                                      color: Colors.orange, fontSize: 25),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox()
-                    ],
+                        SizedBox(
+                          child: Column(
+                            children: [
+                              Text(
+                                'Level',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Obx(
+                                () => Text(
+                                  '${controller.ninjaLevel}',
+                                  style: TextStyle(
+                                      color: Colors.orange, fontSize: 18),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox()
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              IconButton(
-                onPressed: () {},
-
-                icon: Icon(Icons.add),
-                // color: Colors.red,
-              )
-            ],
-          ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: CircleBorder(),
+                    elevation: 0,
+                    padding: EdgeInsets.all(20),
+                  ),
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    controller.incrementLevel();
+                  },
+                ),
+              ]),
         ));
   }
 }
