@@ -29,12 +29,50 @@ class MyHomePage extends StatelessWidget {
 
   Mycontroller controller = Get.put(Mycontroller());
 
+  changeName() {
+    Get.defaultDialog(
+        title: 'New Ninja Name',
+        titlePadding: EdgeInsets.fromLTRB(0, 30, 0, 5),
+        content: SizedBox(
+          width: 230,
+          child: TextField(
+            maxLength: 10,
+            decoration: InputDecoration(
+              // border: OutlineInputBorder(),
+              border: UnderlineInputBorder(),
+              hintText: 'ninja name',
+              contentPadding: EdgeInsets.fromLTRB(5, 20, 5, 20),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+        cancel: TextButton(onPressed: () => Get.back(), child: Text('Cancel')),
+        confirm: ElevatedButton(
+          onPressed: () {
+            //prefix iocn
+          },
+          child: Text('Update'),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     print(controller.ninjaLevel);
     return Scaffold(
         appBar: AppBar(
+          centerTitle: false,
           title: const Text('Ninja Status'),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  changeName();
+                },
+                child: Text('Change Name'),
+              ),
+            )
+          ],
         ),
         body: Center(
           child: Column(
