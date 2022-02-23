@@ -18,7 +18,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          colorSchemeSeed: Colors.purple, brightness: Brightness.dark),
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.orange.shade600)),
+          ),
+          colorSchemeSeed: Colors.orange,
+          brightness: Brightness.dark),
       home: MyHomePage(),
     );
   }
@@ -37,7 +43,7 @@ class MyHomePage extends StatelessWidget {
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
+              child: ElevatedButton(
                 onPressed: () {
                   changeName();
                 },
@@ -58,7 +64,6 @@ class MyHomePage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SizedBox(),
                         Column(
                           children: [
                             CircleAvatar(
@@ -86,7 +91,8 @@ class MyHomePage extends StatelessWidget {
                                 () => Text(
                                   '${controller.ninjaStatus}',
                                   style: TextStyle(
-                                      color: Colors.orange, fontSize: 25),
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               )
                             ],
@@ -106,20 +112,19 @@ class MyHomePage extends StatelessWidget {
                                 () => Text(
                                   '${controller.ninjaLevel}',
                                   style: TextStyle(
-                                      color: Colors.orange, fontSize: 18),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               )
                             ],
                           ),
                         ),
-                        SizedBox()
                       ],
                     ),
                   ),
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
                     shape: CircleBorder(),
                     elevation: 0,
                     padding: EdgeInsets.all(20),
