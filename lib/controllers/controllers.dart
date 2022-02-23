@@ -56,9 +56,12 @@ changeName() {
       cancel: TextButton(onPressed: () => Get.back(), child: Text('Cancel')),
       confirm: ElevatedButton(
         onPressed: () {
-          controller.ninjaName.value = ninjaNameController.text;
-          Get.back();
-          ninjaNameController.clear();
+          if (ninjaNameController.text.trimLeft() == '') {
+          } else {
+            controller.ninjaName.value = ninjaNameController.text.trimLeft();
+            Get.back();
+            ninjaNameController.clear();
+          }
         },
         child: Text('Update'),
       ));

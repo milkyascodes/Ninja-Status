@@ -26,12 +26,10 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
-
   Mycontroller controller = Get.put(Mycontroller());
 
   @override
   Widget build(BuildContext context) {
-    print(controller.ninjaLevel);
     return Scaffold(
         appBar: AppBar(
           centerTitle: false,
