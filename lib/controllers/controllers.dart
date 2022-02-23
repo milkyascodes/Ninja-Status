@@ -1,5 +1,6 @@
-// ignore_for_file: unrelated_type_equality_checks
+// ignore_for_file: unrelated_type_equality_checks, prefer_const_constructors
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // class MyBindings extends Bindings {
@@ -30,4 +31,35 @@ class Mycontroller extends GetxController {
       ninjaStatus.value = 'Master ';
     }
   }
+}
+
+var ninjaNameController = TextEditingController();
+
+changeName() {
+  Mycontroller controller = Get.put(Mycontroller());
+  Get.defaultDialog(
+      title: 'New Ninja Name',
+      titlePadding: EdgeInsets.fromLTRB(0, 30, 0, 5),
+      content: SizedBox(
+        width: 230,
+        child: TextField(
+          controller: ninjaNameController,
+          maxLength: 10,
+          decoration: InputDecoration(
+            border: UnderlineInputBorder(),
+            hintText: 'ninja name',
+            contentPadding: EdgeInsets.fromLTRB(5, 20, 5, 20),
+          ),
+        ),
+      ),
+      barrierDismissible: false,
+      cancel: TextButton(onPressed: () => Get.back(), child: Text('Cancel')),
+      confirm: ElevatedButton(
+        onPressed: () {
+          controller.ninjaName.value = ninjaNameController.text;
+          Get.back();
+          ninjaNameController.clear();
+        },
+        child: Text('Update'),
+      ));
 }

@@ -29,32 +29,6 @@ class MyHomePage extends StatelessWidget {
 
   Mycontroller controller = Get.put(Mycontroller());
 
-  changeName() {
-    Get.defaultDialog(
-        title: 'New Ninja Name',
-        titlePadding: EdgeInsets.fromLTRB(0, 30, 0, 5),
-        content: SizedBox(
-          width: 230,
-          child: TextField(
-            maxLength: 10,
-            decoration: InputDecoration(
-              // border: OutlineInputBorder(),
-              border: UnderlineInputBorder(),
-              hintText: 'ninja name',
-              contentPadding: EdgeInsets.fromLTRB(5, 20, 5, 20),
-            ),
-          ),
-        ),
-        barrierDismissible: false,
-        cancel: TextButton(onPressed: () => Get.back(), child: Text('Cancel')),
-        confirm: ElevatedButton(
-          onPressed: () {
-            //prefix iocn
-          },
-          child: Text('Update'),
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
     print(controller.ninjaLevel);
@@ -97,10 +71,10 @@ class MyHomePage extends StatelessWidget {
                             SizedBox(
                               height: 30,
                             ),
-                            Text(
-                              controller.ninjaName.toString(),
-                              style: TextStyle(fontSize: 30),
-                            )
+                            Obx(() => Text(
+                                  controller.ninjaName.toString().toUpperCase(),
+                                  style: TextStyle(fontSize: 28),
+                                ))
                           ],
                         ),
                         SizedBox(
