@@ -3,13 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// class MyBindings extends Bindings {
-//   @override
-//   void dependencies() {
-//     Get.lazyPut(() => Mycontroller());
-//   }
-// }
-
 class Mycontroller extends GetxController {
   var ninjaName = 'Titulek'.obs;
   var ninjaLevel = 0.obs;

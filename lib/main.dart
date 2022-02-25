@@ -150,19 +150,24 @@ class MyHomePage extends StatelessWidget {
 
 class Themes {
   static final light = ThemeData.light().copyWith(
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+    appBarTheme: AppBarTheme(backgroundColor: Colors.teal.shade400),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color>(Colors.brown.shade400)),
+              MaterialStateProperty.all<Color>(Colors.teal.shade400)),
     ),
   );
   static final dark = ThemeData.dark().copyWith(
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color>(Colors.brown.shade400)),
+              MaterialStateProperty.all<Color>(Colors.teal.shade400)),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(Colors.teal.shade400)),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: ButtonStyle(
