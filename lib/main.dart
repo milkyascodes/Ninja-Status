@@ -41,15 +41,31 @@ class MyHomePage extends StatelessWidget {
           centerTitle: false,
           title: const Text('Ninja Status'),
           actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  changeName();
-                },
-                child: Text('Change Name'),
-              ),
-            )
+            PopupMenuButton(
+                itemBuilder: (context) => [
+                      PopupMenuItem(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              changeName();
+                            },
+                            child: Text('Change Name'),
+                          ),
+                        ),
+                      ),
+                      PopupMenuItem(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: OutlinedButton(
+                            onPressed: () {
+                              print('theme');
+                            },
+                            child: Text('Change Theme'),
+                          ),
+                        ),
+                      )
+                    ])
           ],
         ),
         body: Center(

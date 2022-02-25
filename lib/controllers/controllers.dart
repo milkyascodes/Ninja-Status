@@ -53,7 +53,8 @@ changeName() {
         ),
       ),
       barrierDismissible: false,
-      cancel: TextButton(onPressed: () => Get.back(), child: Text('Cancel')),
+      cancel:
+          OutlinedButton(onPressed: () => Get.back(), child: Text('Cancel')),
       confirm: ElevatedButton(
         onPressed: () {
           if (ninjaNameController.text.trimLeft() == '') {
