@@ -6,28 +6,12 @@ import 'package:get/get.dart';
 import 'controllers/controllers.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          textButtonTheme: TextButtonThemeData(
-            style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.orange.shade600)),
-          ),
-          colorSchemeSeed: Colors.orange,
-          brightness: Brightness.dark),
-      home: MyHomePage(),
-    );
-  }
+  runApp(GetMaterialApp(
+    home: MyHomePage(),
+    title: 'Flutter Demo',
+    theme: Themes.light,
+    darkTheme: Themes.dark,
+  ));
 }
 
 class MyHomePage extends StatelessWidget {
@@ -59,7 +43,13 @@ class MyHomePage extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: OutlinedButton(
                             onPressed: () {
-                              print('theme');
+                              if (Get.isDarkMode) {
+                                print('light');
+                                Get.changeThemeMode(ThemeMode.light);
+                              } else {
+                                print('dark');
+                                Get.changeThemeMode(ThemeMode.dark);
+                              }
                             },
                             child: Text('Change Theme'),
                           ),
@@ -156,4 +146,27 @@ class MyHomePage extends StatelessWidget {
               ]),
         ));
   }
+}
+
+class Themes {
+  static final light = ThemeData.light().copyWith(
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(Colors.brown.shade400)),
+    ),
+  );
+  static final dark = ThemeData.dark().copyWith(
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(Colors.brown.shade400)),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+    ),
+  );
 }
